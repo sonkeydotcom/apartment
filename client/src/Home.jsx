@@ -96,22 +96,25 @@ const Home = () => {
       <header className="bg-slate-800 text-gray-100 py-8 text-center">
         <h1 className="text-2xl font-bold">Halstead Properties</h1>
       </header>
-      <section className=" text-gray-800 py-16">
-        <div className="max-w-5xl mx-auto px-12 py-6 w-4/5 bg-zinc-300">
-          {" "}
-          {/* Modified: added w-4/5 class */}
-          <p className="text-base mb-8">
-            Please feel free to self schedule below. For your convenience, our
-            showing availability is provided on the calendar. Just select a time
-            that works for you and our leasing agent will meet you at the
-            property at the scheduled time. Thanks!
-          </p>
-          <p className="text-base font-medium">
-            Note: When scheduling your showing, please provide a valid cell
-            phone number capable of receiving text messages. A confirmation text
-            will be sent to you the day of the showing. If the showing is not
-            confirmed via text, your showing will be automatically cancelled.
-          </p>
+      <section className="text-gray-800 py-16">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10 lg:py-12 bg-zinc-300">
+          <div className="w-full md:w-4/5 mx-auto">
+            {" "}
+            {/* Modified: added w-full and centered the content */}
+            <p className="text-base mb-8">
+              Please feel free to self schedule below. For your convenience, our
+              showing availability is provided on the calendar. Just select a
+              time that works for you and our leasing agent will meet you at the
+              property at the scheduled time. Thanks!
+            </p>
+            <p className="text-base font-medium">
+              Note: When scheduling your showing, please provide a valid cell
+              phone number capable of receiving text messages. A confirmation
+              text will be sent to you the day of the showing. If the showing is
+              not confirmed via text, your showing will be automatically
+              cancelled.
+            </p>
+          </div>
         </div>
       </section>
 
