@@ -5,7 +5,7 @@ import asyncHandler from "express-async-handler";
 // @route   POST /api/mail
 // @access  Public
 
-const sendEmails = asyncHandler(async (req, res) => {
+const sendEmailers = asyncHandler(async (req, res) => {
   const { name, cid, email, date, time, address } = req.body;
 
   const transporter = nodemailer.createTransport({
@@ -95,4 +95,4 @@ img {
   }
 });
 
-export default sendEmails;
+export default sendEmailers;

@@ -5,7 +5,7 @@ import rentalRoute from "./routes/rentalRoute.js";
 import scheduleRoute from "./routes/scheduleRoute.js";
 import applicationRoute from "./routes/applicationRoute.js";
 import mailRoute from "./routes/mailRoute.js";
-import nodemailer from "nodemailer";
+import mailerRoute from "./routes/mailerRoute.js";
 import { notFound, errorHandler } from "./middleware/errorMiddlware.js";
 import cors from "cors";
 import multer from "multer";
@@ -43,6 +43,7 @@ app.use("/api/rentals", rentalRoute);
 app.use("/api/schedule", scheduleRoute);
 app.use("/api/application", applicationRoute);
 app.use("/api/mail", mailRoute);
+app.use("/api/mailer", mailerRoute);
 
 // Route to handle root endpoint
 app.get("/", (req, res) => {

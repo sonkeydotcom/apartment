@@ -145,7 +145,7 @@ const Application = () => {
         }
       );
       console.log(response);
-      setShowPopup(true);
+      setShowPopup(false);
     } catch (error) {
       console.error(error);
       setShowError(true); // Set showError state to true to display the error popup
@@ -155,7 +155,9 @@ const Application = () => {
   };
 
   const successMessage = async () => {
-    const response = await axios.post("http://localhost:3000/api/mail");
+    const response = await axios.post("http://localhost:3000/api/mail", {
+      name: `${formData.firstName} ${formData.lastName}`,
+    });
     console.log(response);
   };
 

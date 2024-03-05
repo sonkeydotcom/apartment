@@ -3,6 +3,7 @@ import moment from "moment";
 
 const Modal = ({ isOpen, onClose, date, time, address }) => {
   const formattedDate = moment(date).format("dddd, MMMM Do YYYY");
+
   return (
     <div
       className={`fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex justify-center items-center ${

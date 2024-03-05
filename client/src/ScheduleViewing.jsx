@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Modal from "./components/Modal";
+import moment from "moment";
 
 const ScheduleViewing = () => {
   const { id } = useParams();
@@ -17,6 +18,7 @@ const ScheduleViewing = () => {
   const [viewingDate, setViewingDate] = useState("");
   const [viewingTime, setViewingTime] = useState("");
   const [viewingAddress, setViewingAddress] = useState("");
+  const [homeDetails, setHomeDetails] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,6 +27,21 @@ const ScheduleViewing = () => {
       [name]: value,
     }));
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/rentals/${id}`
+        );
+        console.log(response.data);
+        setHomeDetails(response.data.listing);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,7 +60,7 @@ const ScheduleViewing = () => {
       console.log(response.data);
       setViewingDate(formData.preferredDate);
       setViewingTime(formData.preferredTime);
-      setViewingAddress("123 Main St, New York, NY 10001");
+      successMessage();
       setModalOpen(true);
 
       // Redirect to a thank you page
@@ -52,6 +69,23 @@ const ScheduleViewing = () => {
     }
 
     console.log(id);
+  };
+
+  const formattedDate = moment(formData.preferredDate).format(
+    "dddd, MMMM Do YYYY"
+  );
+
+  const formattedTime = moment(formData.preferredTime).format(" h:mm: a");
+
+  const successMessage = async () => {
+    const response = await axios.post("http://localhost:3000/api/mail", {
+      name: formData.fullName,
+      email: formData.email,
+      date: formattedDate,
+      time: formData.preferredTime,
+      address: homeDetails.location,
+    });
+    console.log(response);
   };
 
   return (
@@ -168,7 +202,7 @@ const ScheduleViewing = () => {
         onClose={() => setModalOpen(false)}
         date={viewingDate}
         time={viewingTime}
-        address={viewingAddress}
+        address={homeDetails.location}
       />
       <footer className="bg-slate-800 text-gray-100 py-4 text-center">
         <p>&copy; 2024 Halstead Realty</p>

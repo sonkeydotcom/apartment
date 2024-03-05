@@ -29,6 +29,9 @@ const PropertyCard = ({ rentals }) => (
 
 const Home = () => {
   const [rentals, setRentals] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortOrder, setSortOrder] = useState("asc");
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -43,57 +46,25 @@ const Home = () => {
     fetchData();
   }, []);
 
-  const properties = [
-    {
-      id: 1,
-      title: "Modern Apartment in Downtown",
-      location: "123 Main Street, Anytown, USA",
-      rent: 2000,
-      image: "https://via.placeholder.com/400x300",
-    },
-    {
-      id: 2,
-      title: "Cozy House Near the Lake",
-      location: "456 Lakeview Drive, Somewhere, USA",
-      rent: 2500,
-      image: "https://via.placeholder.com/400x300",
-    },
-    {
-      id: 3,
-      title: "Cozy House Near the Lake",
-      location: "456 Lakeview Drive, Somewhere, USA",
-      rent: 2500,
-      image: "https://via.placeholder.com/400x300",
-    },
-    {
-      id: 4,
-      title: "Cozy House Near the Lake",
-      location: "456 Lakeview Drive, Somewhere, USA",
-      rent: 2500,
-      image: "https://via.placeholder.com/400x300",
-    },
-    {
-      id: 5,
-      title: "Cozy House Near the Lake",
-      location: "456 Lakeview Drive, Somewhere, USA",
-      rent: 2500,
-      image: "https://via.placeholder.com/400x300",
-    },
-    {
-      id: 6,
-      title: "Cozy House Near the Lake",
-      location: "456 Lakeview Drive, Somewhere, USA",
-      rent: 2500,
-      image: "https://via.placeholder.com/400x300",
-    },
-    {
-      id: 7,
-      title: "Cozy House Near the Lake",
-      location: "456 Lakeview Drive, Somewhere, USA",
-      rent: 2500,
-      image: "https://via.placeholder.com/400x300",
-    },
-  ];
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleSortChange = (event) => {
+    setSortOrder(event.target.value);
+  };
+
+  const filteredRentals = rentals.filter((rental) =>
+    rental.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const sortedRentals = filteredRentals.sort((a, b) => {
+    if (sortOrder === "asc") {
+      return a.title.localeCompare(b.title);
+    } else {
+      return b.title.localeCompare(a.title);
+    }
+  });
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -101,24 +72,30 @@ const Home = () => {
         <img src={hal} alt="Halstead Properties" className="w-auto mx-auto" />
       </header>
 
-      <section className="text-gray-800 py-16">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10 lg:py-12 bg-zinc-300">
-          <div className="w-full md:w-4/5 mx-auto">
-            {" "}
-            {/* Modified: added w-full and centered the content */}
-            <p className="text-base mb-8">
-              Please feel free to self schedule below. For your convenience, our
-              showing availability is provided on the calendar. Just select a
-              time that works for you and our leasing agent will meet you at the
-              property at the scheduled time. Thanks!
-            </p>
-            <p className="text-base font-medium">
-              Note: When scheduling your showing, please provide a valid cell
-              phone number capable of receiving text messages. A confirmation
-              text will be sent to you the day of the showing. If the showing is
-              not confirmed via text, your showing will be automatically
-              cancelled.
-            </p>
+      <section className="py-4 px-4 sm:px-6 lg:px-8 bg-gray-200">
+        <h1 className="flex justify-center items-center text-2xl mx-auto font-bold my-4">
+          Welcome to Halstead Properties
+        </h1>
+        <div className="max-w-5xl mx-auto">
+          <div className="flex justify-center items-center mb-4">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className="border border-gray-300 rounded-md p-2 mr-2"
+            />
+            <select
+              value={sortOrder}
+              onChange={handleSortChange}
+              className="border border-gray-300 rounded-md p-2"
+            >
+              <option value="asc">Sort A-Z</option>
+              <option value="desc">Sort Z-A</option>
+              <option value="priceHighToLow">Price: High to Low</option>
+              <option value="priceLowToHigh">Price: Low to High</option>
+              <option value="location">Location</option>
+            </select>
           </div>
         </div>
       </section>
@@ -126,7 +103,7 @@ const Home = () => {
       <main className="max-w-5xl mx-auto py-8 px-4">
         <h2 className="text-xl font-bold mb-4">Featured Properties</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {rentals.map((rentals) => (
+          {sortedRentals.map((rentals) => (
             <PropertyCard key={rentals._id} rentals={rentals} />
           ))}
         </div>
