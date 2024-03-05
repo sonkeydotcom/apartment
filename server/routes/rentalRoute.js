@@ -1,5 +1,6 @@
 import express from "express";
 import multer from "multer";
+import AWS from "aws-sdk";
 import path from "path";
 import {
   viewListings,
@@ -8,35 +9,15 @@ import {
 } from "../controllers/rentalController.js";
 const router = express.Router();
 
+const s3 = new AWS.S3();
+
 router.get("/", viewListings);
 router.get("/:id", viewListing);
 
-const storage = multer.diskStorage({
-  destination(req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename(req, file, cb) {
-    cb(
-      null,
-      `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
-    );
-  },
-});
-
+const storage = multer.memoryStorage();
 const upload = multer({
-  storage,
-  fileFilter(req, file, cb) {
-    if (
-      file.mimetype === "image/jpeg" ||
-      file.mimetype === "image/jpg" ||
-      file.mimetype === "image/png" ||
-      file.mimetype === "image/webp"
-    ) {
-      cb(null, true);
-    } else {
-      cb(new Error("Images only"));
-    }
-  },
+  storage: storage,
+  limits: { fileSize: 1024 * 1024 * 5 },
 });
 
 router.post("/", upload.array("images", 12), createListing);

@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import multer from "multer";
 import Listing from "../models/listingModel.js";
+import AWS from "aws-sdk";
 
 const viewListings = asyncHandler(async (req, res) => {
   const listings = await Listing.find({});
@@ -41,8 +42,6 @@ const createListing = asyncHandler(async (req, res) => {
     pets,
   } = req.body;
 
-  const images = req.files.map((file) => file.path);
-
   if (
     !title ||
     !rent ||
@@ -64,6 +63,31 @@ const createListing = asyncHandler(async (req, res) => {
     throw new Error("All fields are required");
   }
 
+  const images = req.files.map((file) => {
+    return file.location;
+  });
+
+  // Configure AWS SDK with your credentials
+
+  const s3 = new AWS.S3();
+
+  // Upload images to S3
+  const promises = req.files.map(async (file) => {
+    const params = {
+      Bucket: "cyclic-energetic-tunic-bat-ap-northeast-2",
+      Key: `${Date.now()}-${file.originalname}`,
+      Body: file.buffer,
+      ContentType: file.mimetype,
+      ACL: "public-read", // Add this line
+    };
+
+    return s3.upload(params).promise();
+  });
+
+  const uploadedImages = await Promise.all(promises);
+
+  const imageUrls = uploadedImages.map((data) => data.Location);
+
   const listing = new Listing({
     title,
     rent,
@@ -80,8 +104,9 @@ const createListing = asyncHandler(async (req, res) => {
     deposit,
     leaseLength,
     pets,
-    images,
+    images: imageUrls,
   });
+
   const createdListing = await listing.save();
 
   res.json({ createdListing }).status(201);
