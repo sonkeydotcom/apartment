@@ -35,7 +35,9 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/rentals");
+        const response = await axios.get(
+          "https://apartment-1-a24r.onrender.com/api/rentals"
+        );
         console.log(response.data);
         setRentals(response.data.listings);
         console.log(rentals.images);

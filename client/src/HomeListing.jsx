@@ -87,7 +87,7 @@ const HomeListing = () => {
                         : "https://via.placeholder.com/400x300"
                     }
                     alt={`Property ${index + 1}`}
-                    className="rounded-lg w-full h-64 object-cover mb-4"
+                    className="rounded-lg w-full h-70 object-cover mb-4"
                   />
                 </div>
               ))}

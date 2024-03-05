@@ -6,7 +6,7 @@ import asyncHandler from "express-async-handler";
 // @access  Public
 
 const sendEmailers = asyncHandler(async (req, res) => {
-  const { name, cid, email, date, time, address } = req.body;
+  const { name, address, email, phone, moveInDate } = req.body;
 
   const transporter = nodemailer.createTransport({
     host: "mail.privateemail.com",
@@ -21,7 +21,7 @@ const sendEmailers = asyncHandler(async (req, res) => {
   const mailData = {
     from: '"Halstead Realty" <support@halsteadrealty.rent>', // sender address
     to: email, // list of receivers
-    subject: "Thank your for your Interest in our Property!",
+    subject: "Rental Application Submission Confirmation!",
     attachments: [
       {
         filename: "logo.png",
@@ -30,60 +30,57 @@ const sendEmailers = asyncHandler(async (req, res) => {
       },
     ],
     html: `
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Confirmation: Viewing Appointment</title>
-<style>
-/* Add your CSS styles here */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
-}
-
-.container {
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  color: #333;
-}
-
-p {
-  color: #666;
-  line-height: 1.6;
-}
-
-img {
-  width: 100%;
-  border-radius: 8px 8px 0 0;
-
-}
-</style>
-</head>
-<body>
-<div class="container">
- <img src="cid:${cid}">
-  <p>Hello ${name},</p>
-  <p>We are writing to confirm your viewing appointment for the property located at <strong>${address}</strong></p>
-  <p><strong>Date:</strong> ${date}</p>
-  <p><strong>Time:</strong> ${time}</p>
-  <p>If you have any questions or need to reschedule, please contact us as soon as possible.</p>
-  <p>Thank you, and we look forward to seeing you at the viewing!</p>
-  <p>Best regards,<br> Halsteadrealty<br></p>
-</div>
-</body>
-</html>
-
+    <style>
+      /* Add your CSS styles here */
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      h1 {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      li {
+        margin-bottom: 10px;
+      }
+      p.footer {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #666;
+      }
+    </style>
+    <div class="container">
+      <p>Dear ${name},</p>
+      <p>You submitted a rental application for the property located at ${address}. We appreciate your interest in renting with us.</p>
+      <p>Here's a summary of the information you provided in your application:</p>
+      <ul>
+        <li><strong>Applicant Name:</strong> ${name}</li>
+        <li><strong>Email Address:</strong> ${email}</li>
+        <li><strong>Phone Number:</strong> ${phone}</li>
+        <li><strong>Current Address:</strong> ${address}</li>
+        <li><strong>Desired Move-in Date:</strong> ${moveInDate}</li>
+       
+      </ul>
+      <p>Our team will now review your application and conduct the necessary checks. </p>
+      <p>If you have any questions or need further assistance, please don't hesitate to contact us at <b>support@halsteadrealty.rent</b>.</p>
+      <p>Thank you again for considering. We'll be in touch soon!</p>
+      <p class="footer">Best regards</p>
+    </div>
   `,
   };
 
