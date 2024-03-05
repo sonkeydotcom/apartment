@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Outlet, Link } from "react-router-dom";
 import axios from "axios";
+import hal from "./assets/halstead.svg";
 
 const PropertyCard = ({ rentals }) => (
   <div className="bg-white rounded-lg shadow-md p-4 mb-4">
     <img
       src={
-        rentals.image ? rentals.image : "https://via.placeholder.com/400x300"
+        rentals.images && rentals.images[0]
+          ? `http://localhost:3000/${rentals.images[0]}`
+          : "https://via.placeholder.com/400x300"
       }
       alt={rentals.title}
       className="w-full h-48 object-cover rounded-t-lg mb-4"
@@ -32,6 +35,7 @@ const Home = () => {
         const response = await axios.get("http://localhost:3000/api/rentals");
         console.log(response.data);
         setRentals(response.data.listings);
+        console.log(rentals.images);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -93,9 +97,10 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <header className="bg-slate-800 text-gray-100 py-8 text-center">
-        <h1 className="text-2xl font-bold">Halstead Properties</h1>
+      <header className="bg-slate-800 text-gray-100 py-2 text-center">
+        <img src={hal} alt="Halstead Properties" className="w-auto mx-auto" />
       </header>
+
       <section className="text-gray-800 py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10 lg:py-12 bg-zinc-300">
           <div className="w-full md:w-4/5 mx-auto">

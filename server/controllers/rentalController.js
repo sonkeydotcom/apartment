@@ -1,4 +1,5 @@
 import asyncHandler from "express-async-handler";
+import multer from "multer";
 import Listing from "../models/listingModel.js";
 
 const viewListings = asyncHandler(async (req, res) => {
@@ -40,6 +41,8 @@ const createListing = asyncHandler(async (req, res) => {
     pets,
   } = req.body;
 
+  const images = req.files.map((file) => file.path);
+
   if (
     !title ||
     !rent ||
@@ -77,6 +80,7 @@ const createListing = asyncHandler(async (req, res) => {
     deposit,
     leaseLength,
     pets,
+    images,
   });
   const createdListing = await listing.save();
 

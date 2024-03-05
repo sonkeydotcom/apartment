@@ -8,6 +8,7 @@ import mailRoute from "./routes/mailRoute.js";
 import nodemailer from "nodemailer";
 import { notFound, errorHandler } from "./middleware/errorMiddlware.js";
 import cors from "cors";
+import multer from "multer";
 
 dotenv.config();
 
@@ -16,6 +17,11 @@ const app = express();
 
 // Connect to MongoDB database
 connectDB();
+
+// Middleware to handle form data
+
+app.use(express.static("public"));
+app.use("/uploads", express.static("uploads"));
 
 // Middleware to parse JSON bodies
 app.use(express.json());

@@ -7,18 +7,18 @@ import asyncHandler from "express-async-handler";
 
 const sendEmails = asyncHandler(async (req, res) => {
   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
+    host: "mail.privateemail.com",
+    port: 465,
+    secure: true,
     auth: {
-      user: "annagu.kennedy@gmail.com",
-      pass: "ftsr rqvt icjz qdbd",
+      user: "support@halsteadrealty.rent",
+      pass: "Bloomyguy1",
     },
   });
-
+  //"Zillow Housing" <annagu.kennedy@gmail.com>'
   const mailData = {
-    from: '"Zillow Housing" <annagu.kennedy@gmail.com>',
-    to: "samueladeniyi829@gmail.com",
+    from: "support@halsteadrealty.rent>", // sender address
+    to: "annagu.kennedy@gmail.com",
     subject: "Thank your for your Interest in our Property!",
     text: "hello",
     html: `

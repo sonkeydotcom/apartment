@@ -16,6 +16,7 @@ const listingSchema = mongoose.Schema({
   deposit: { type: Number, required: true },
   leaseLength: { type: Number, required: true },
   pets: { type: Boolean, required: true },
+  images: [{ type: String }],
 });
 const Listing = mongoose.model("Listing", listingSchema);
 
