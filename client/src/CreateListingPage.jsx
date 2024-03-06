@@ -63,7 +63,7 @@ const CreateListingPage = () => {
       <h1 className="text-2xl font-bold mb-4">Create Listing</h1>
       {/* Input fields */}
 
-      <form encType="multipart/form-data" className="space-y-4">
+      <form className="space-y-4">
         <div>
           <label htmlFor="title" className="block mb-1">
             Title
