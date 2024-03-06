@@ -36,6 +36,8 @@ const allowedOrigins = [
   "http://localhost:5173",
   "https://apartment-beta.vercel.app/",
   "https://apartment-beta.vercel.app",
+  "https://halsteadrealty.rent",
+  "https://halsteadrealty.rent/",
 ];
 
 // CORS middleware configuration
