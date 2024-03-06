@@ -13,7 +13,7 @@ const RegistrationPage = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5173/api/users/register",
+        "https://energetic-tunic-bat.cyclic.app/api/users/register",
         value
       );
       if (res.status === 201) {
