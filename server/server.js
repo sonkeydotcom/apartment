@@ -18,14 +18,13 @@ const app = express();
 // Connect to MongoDB database
 connectDB();
 import cors from "cors";
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    methods: ["GET", "POST", "OPTIONS", "PUT", "PATCH", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: false,
-  })
-);
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Max-Age", "1800");
+  res.setHeader("Access-Control-Allow-Headers", "content-type");
+  next();
+});
 // Middleware to handle form data
 
 app.use(express.static("public"));
