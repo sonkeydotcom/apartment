@@ -6,6 +6,7 @@ import Application from "./Application";
 import Payment from "./Payment";
 import CreateListingPage from "./CreateListingPage";
 import LoginPage from "./LoginPage";
+import RegistrationPage from "./RegistrationPage";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="application/:id" element={<Application />}></Route>
         <Route path="payment" element={<Payment />}></Route>
         <Route path="login" element={<LoginPage />}></Route>
+        <Route path="register" element={<RegistrationPage />}></Route>
 
         <Route path="create-listing" element={<CreateListingPage />}></Route>
       </Routes>

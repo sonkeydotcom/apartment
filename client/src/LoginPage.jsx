@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import axios from "axios";
 
@@ -14,7 +14,7 @@ const LoginPage = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/users/auth",
+        "https://energetic-tunic-bat.cyclic.app/api/users/auth",
         value
       );
       if (res.status === 201) {
@@ -37,13 +37,13 @@ const LoginPage = () => {
           Login
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          Or{" "}
-          <a
-            href="#"
+          Or
+          <Link
+            to="/register"
             className="font-medium text-indigo-600 hover:text-indigo-500"
           >
             sign up for free
-          </a>
+          </Link>
         </p>
       </div>
 
