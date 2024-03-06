@@ -20,7 +20,6 @@ const RegistrationPage = () => {
         // Redirect to another page upon successful registration
         navigate("/login");
       }
-      console.log(res.data);
     } catch (error) {
       console.error(error);
       setError(error.response.data.message);

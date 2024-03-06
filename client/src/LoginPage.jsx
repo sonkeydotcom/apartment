@@ -21,7 +21,6 @@ const LoginPage = () => {
         // Redirect to another page upon successful login
         navigate("/create-listing");
       }
-      console.log(res.data);
     } catch (error) {
       console.error(error);
       setError(error.response.data.message);
