@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import rentalRoute from "./routes/rentalRoute.js";
 import scheduleRoute from "./routes/scheduleRoute.js";
 import applicationRoute from "./routes/applicationRoute.js";
+import userRoute from "./routes/userRoute.js";
 import mailRoute from "./routes/mailRoute.js";
 import mailerRoute from "./routes/mailerRoute.js";
 import cors from "cors";
@@ -54,6 +55,7 @@ app.use("/api/schedule", scheduleRoute);
 app.use("/api/application", applicationRoute);
 app.use("/api/mail", mailRoute);
 app.use("/api/mailer", mailerRoute);
+app.use("/api/users", userRoute);
 
 // Route to handle root endpoint
 app.get("/", (req, res) => {

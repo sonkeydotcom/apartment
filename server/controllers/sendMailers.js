@@ -67,7 +67,7 @@ const sendEmailers = asyncHandler(async (req, res) => {
     <div class="container">
       <p>Dear ${name},</p>
       <p>You submitted a rental application for the property located at ${address}. We appreciate your interest in renting with us.</p>
-      <p>Here's a summary of the information you provided in your application:</p>
+      <p>Below, you'll find a summary of the details provided in your application:</p>
       <ul>
         <li><strong>Applicant Name:</strong> ${name}</li>
         <li><strong>Email Address:</strong> ${email}</li>
@@ -76,10 +76,11 @@ const sendEmailers = asyncHandler(async (req, res) => {
         <li><strong>Desired Move-in Date:</strong> ${moveInDate}</li>
        
       </ul>
-      <p>Our team will now review your application and conduct the necessary checks. </p>
-      <p>If you have any questions or need further assistance, please don't hesitate to contact us at <b>support@halsteadrealty.rent</b>.</p>
-      <p>Thank you again for considering. We'll be in touch soon!</p>
-      <p class="footer">Best regards</p>
+      <p>To proceed with your application, kindly contact your realtor/landlord to arrange payment for the rental application fee. They will provide you with the necessary instructions and payment details.</p>
+  <p>Once the payment is completed, our team will promptly review your application and conduct the necessary checks. </p>
+  <p>If you have any inquiries or require further assistance, please feel free to reach out to us at <b>support@halsteadrealty.rent</b>.</p>
+  <p>We sincerely appreciate your consideration. We look forward to connecting with you soon!</p>
+  <p class="footer">Warm regards</p>
     </div>
   `,
   };
