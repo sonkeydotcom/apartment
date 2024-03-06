@@ -46,7 +46,7 @@ const CreateListingPage = () => {
 
     try {
       const response = await axios.post(
-        "https://energetic-tunic-bat.cyclic.app/api/rentals/",
+        "https://energetic-tunic-bat.cyclic.app/api/rentals",
         data // Send the FormData instance
       );
       console.log(response.data);

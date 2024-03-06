@@ -6,6 +6,7 @@ import scheduleRoute from "./routes/scheduleRoute.js";
 import applicationRoute from "./routes/applicationRoute.js";
 import mailRoute from "./routes/mailRoute.js";
 import mailerRoute from "./routes/mailerRoute.js";
+import cors from "cors";
 import { notFound, errorHandler } from "./middleware/errorMiddlware.js";
 
 import multer from "multer";
@@ -17,8 +18,7 @@ const app = express();
 
 // Connect to MongoDB database
 connectDB();
-import cors from "cors";
-app.use(cors());
+
 // Middleware to handle form data
 
 app.use(express.static("public"));
@@ -31,6 +31,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Middleware to enable CORS
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://apartment-beta.vercel.app",
+];
+
+// CORS middleware configuration
+const corsOptions = {
+  origin: allowedOrigins,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true, // Enable CORS credentials
+};
+
+// Apply CORS middleware to all routes
+app.use(cors(corsOptions));
 // Use cors middleware with options
 
 // Define routes

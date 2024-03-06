@@ -1,7 +1,10 @@
 import asyncHandler from "express-async-handler";
 import multer from "multer";
 import Listing from "../models/listingModel.js";
+import dotenv from "dotenv";
 import AWS from "aws-sdk";
+
+dotenv.config();
 
 const viewListings = asyncHandler(async (req, res) => {
   const listings = await Listing.find({});
@@ -69,8 +72,8 @@ const createListing = asyncHandler(async (req, res) => {
 
   // Configure AWS SDK with your credentials
   AWS.config.update({
-    accessKeyId: env.process.MY_AWS_ACCESS_KEY_ID,
-    secretAccessKey: env.process.MY_AWS_SECRET_ACCESS_KEY,
+    accessKeyId: process.env.MY_AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.MY_AWS_SECRET_ACCESS_KEY,
   });
 
   const s3 = new AWS.S3();
