@@ -155,13 +155,16 @@ const Application = () => {
   };
 
   const successMessage = async () => {
-    const response = await axios.post("http://localhost:3000/api/mailer", {
-      name: `${formData.firstName} ${formData.lastName}`,
-      email: formData.email,
-      phone: formData.phone,
-      address: formData.address,
-      moveInDate: formData.moveInDate,
-    });
+    const response = await axios.post(
+      "https://energetic-tunic-bat.cyclic.app/api/mailer",
+      {
+        name: `${formData.firstName} ${formData.lastName}`,
+        email: formData.email,
+        phone: formData.phone,
+        address: formData.address,
+        moveInDate: formData.moveInDate,
+      }
+    );
     console.log(response);
   };
 

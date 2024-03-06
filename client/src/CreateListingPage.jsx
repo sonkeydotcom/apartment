@@ -46,7 +46,7 @@ const CreateListingPage = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/rentals",
+        "https://energetic-tunic-bat.cyclic.app/api/rentals",
         data, // Send the FormData instance
         {
           headers: { "Content-Type": "multipart/form-data" },

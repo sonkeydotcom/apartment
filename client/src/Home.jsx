@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Outlet, Link } from "react-router-dom";
 import axios from "axios";
 import hal from "./assets/halstead.svg";
+import Spinner from "./components/Spinner";
 
 const PropertyCard = ({ rentals }) => (
   <div className="bg-white rounded-lg shadow-md p-4 mb-4">
@@ -104,6 +105,7 @@ const Home = () => {
 
       <main className="max-w-5xl mx-auto py-8 px-4">
         <h2 className="text-xl font-bold mb-4">Featured Properties</h2>
+        {rentals.length === 0 && <Spinner />}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {sortedRentals.map((rentals) => (
             <PropertyCard key={rentals._id} rentals={rentals} />
