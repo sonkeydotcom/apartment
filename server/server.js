@@ -37,6 +37,8 @@ const allowedOrigins = [
   "https://apartment-beta.vercel.app/",
   "https://apartment-beta.vercel.app",
   "https://halsteadrealty.rent",
+  "https://www.halsteadrealty.rent/",
+  "https://www.halsteadrealty.rent",
   "https://halsteadrealty.rent/",
 ];
 
