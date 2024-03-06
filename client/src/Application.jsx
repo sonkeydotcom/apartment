@@ -138,7 +138,7 @@ const Application = () => {
     setIsSubmitting(true); // Set isSubmitting to true when starting the submission
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/application/65e29119bba78c3c6412b68b",
+        `https://energetic-tunic-bat.cyclic.app/api/application/${id}`,
         {
           ...formData,
           name: `${formData.firstName} ${formData.lastName}`,

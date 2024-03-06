@@ -13,7 +13,7 @@ const HomeListing = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/rentals/${id}`
+          `https://energetic-tunic-bat.cyclic.app/api/rentals/${id}`
         );
         console.log(response.data);
         setHomeDetails(response.data.listing);
@@ -82,9 +82,7 @@ const HomeListing = () => {
                 <div key={index}>
                   <img
                     src={
-                      image
-                        ? `http://localhost:3000/${image}`
-                        : "https://via.placeholder.com/400x300"
+                      image ? `${image}` : "https://via.placeholder.com/400x300"
                     }
                     alt={`Property ${index + 1}`}
                     className="rounded-lg w-full h-70 object-cover mb-4"

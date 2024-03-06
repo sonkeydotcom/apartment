@@ -8,7 +8,7 @@ const PropertyCard = ({ rentals }) => (
     <img
       src={
         rentals.images && rentals.images[0]
-          ? `http://localhost:3000/${rentals.images[0]}`
+          ? rentals.images[0]
           : "https://via.placeholder.com/400x300"
       }
       alt={rentals.title}
@@ -36,7 +36,7 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://apartment-1-a24r.onrender.com/api/rentals"
+          "https://energetic-tunic-bat.cyclic.app/api/rentals"
         );
         console.log(response.data);
         setRentals(response.data.listings);
