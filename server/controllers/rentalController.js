@@ -69,8 +69,8 @@ const createListing = asyncHandler(async (req, res) => {
 
   // Configure AWS SDK with your credentials
   AWS.config.update({
-    accessKeyId: env.process.AWS_ACCESS_KEY_ID,
-    secretAccessKey: env.process.AWS_SECRET_ACCESS_KEY,
+    accessKeyId: env.process.MY_AWS_ACCESS_KEY_ID,
+    secretAccessKey: env.process.MY_AWS_SECRET_ACCESS_KEY,
   });
 
   const s3 = new AWS.S3();
