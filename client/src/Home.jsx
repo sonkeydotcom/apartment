@@ -120,6 +120,11 @@ const Home = () => {
       </main>
       <footer className="bg-slate-800 text-gray-100 py-4 text-center">
         <p>&copy; 2024 Halstead Realty</p>
+
+        <Link to="/create-listing" className="block mt-2">
+          {" "}
+          Create Listing
+        </Link>
       </footer>
     </div>
   );

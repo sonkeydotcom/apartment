@@ -47,10 +47,7 @@ const CreateListingPage = () => {
     try {
       const response = await axios.post(
         "https://energetic-tunic-bat.cyclic.app/api/rentals/",
-        data, // Send the FormData instance
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
+        data // Send the FormData instance
       );
       console.log(response.data);
     } catch (error) {
