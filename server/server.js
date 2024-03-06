@@ -33,7 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 // Use cors middleware with options
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://apartment-beta.vercel.app/"],
+    origin: "http://localhost:5173",
     methods: ["GET", "POST", "OPTIONS", "PUT", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true, // Enable CORS credentials
