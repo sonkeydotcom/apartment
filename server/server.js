@@ -7,7 +7,7 @@ import applicationRoute from "./routes/applicationRoute.js";
 import mailRoute from "./routes/mailRoute.js";
 import mailerRoute from "./routes/mailerRoute.js";
 import { notFound, errorHandler } from "./middleware/errorMiddlware.js";
-import cors from "cors";
+
 import multer from "multer";
 
 dotenv.config();
@@ -17,7 +17,15 @@ const app = express();
 
 // Connect to MongoDB database
 connectDB();
-
+import cors from "cors";
+app.use(
+  cors({
+    origin: ["https://energetic-tunic-bat.cyclic.app", "http://localhost:5173"],
+    methods: ["GET", "POST", "OPTIONS", "PUT", "PATCH", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
 // Middleware to handle form data
 
 app.use(express.static("public"));
@@ -31,13 +39,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // Middleware to enable CORS
 // Use cors middleware with options
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    methods: ["GET", "POST", "OPTIONS", "PUT", "PATCH", "DELETE"],
-    allowedHeaders: ["Content-Type"],
-  })
-);
 
 // Define routes
 app.use("/api/rentals", rentalRoute);
