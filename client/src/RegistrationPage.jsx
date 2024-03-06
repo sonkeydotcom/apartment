@@ -22,7 +22,11 @@ const RegistrationPage = () => {
       }
     } catch (error) {
       console.error(error);
-      setError(error.response.data.message);
+      if (error.response) {
+        setError(error.response.data.message);
+      } else {
+        setError("An error occurred");
+      }
     }
 
     console.log(value);

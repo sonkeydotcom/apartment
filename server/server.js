@@ -34,6 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 // Middleware to enable CORS
 const allowedOrigins = [
   "http://localhost:5173",
+  "https://apartment-beta.vercel.app/",
   "https://apartment-beta.vercel.app",
 ];
 
