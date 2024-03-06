@@ -22,11 +22,7 @@ const RegistrationPage = () => {
       }
     } catch (error) {
       console.error(error);
-      if (error.response) {
-        setError(error.response.data.message);
-      } else {
-        setError("An error occurred");
-      }
+      setError("Invalid user data");
     }
 
     console.log(value);

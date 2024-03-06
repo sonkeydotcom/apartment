@@ -23,11 +23,7 @@ const LoginPage = () => {
       }
     } catch (error) {
       console.error(error);
-      if (error.response) {
-        setError(error.response.data.message);
-      } else {
-        setError("An error occurred");
-      }
+      setError("Invalid email or password");
     }
 
     console.log(value);
