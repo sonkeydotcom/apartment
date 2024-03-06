@@ -32,6 +32,7 @@ const Home = () => {
   const [rentals, setRentals] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,9 +40,10 @@ const Home = () => {
         const response = await axios.get(
           "https://energetic-tunic-bat.cyclic.app/api/rentals"
         );
-        console.log(response.data);
+
         setRentals(response.data.listings);
-        console.log(rentals.images);
+        setIsLoading(false);
+        response.data.listings.length === 0 ? console.log("No data") : null;
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -105,7 +107,11 @@ const Home = () => {
 
       <main className="max-w-5xl mx-auto py-8 px-4">
         <h2 className="text-xl font-bold mb-4">Featured Properties</h2>
-        {rentals.length === 0 && <Spinner />}
+        {isLoading ? (
+          <Spinner />
+        ) : rentals.length === 0 ? (
+          <p>No Listing Available...</p>
+        ) : null}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {sortedRentals.map((rentals) => (
             <PropertyCard key={rentals._id} rentals={rentals} />
