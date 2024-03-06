@@ -30,13 +30,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Middleware to enable CORS
-app.use(
-  cors({
-    origin: "https://apartment-beta.vercel.app",
-    methods: "GET,POST,PUT,DELETE",
-    allowedHeaders: ["Content-Type"],
-  })
-);
+app.use(cors());
 
 // Define routes
 app.use("/api/rentals", rentalRoute);

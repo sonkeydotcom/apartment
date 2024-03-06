@@ -68,17 +68,20 @@ const createListing = asyncHandler(async (req, res) => {
   });
 
   // Configure AWS SDK with your credentials
+  AWS.config.update({
+    accessKeyId: "AKIA47CRYZBE6D6A2LME",
+    secretAccessKey: "DnMpRt2/hiTGlQwjWI6F2ruMoD0HswH6Y+OeliMD",
+  });
 
   const s3 = new AWS.S3();
 
   // Upload images to S3
   const promises = req.files.map(async (file) => {
     const params = {
-      Bucket: "cyclic-energetic-tunic-bat-ap-northeast-2",
+      Bucket: "apartbucket",
       Key: `${Date.now()}-${file.originalname}`,
       Body: file.buffer,
       ContentType: file.mimetype,
-      ACL: "public-read", // Add this line
     };
 
     return s3.upload(params).promise();
