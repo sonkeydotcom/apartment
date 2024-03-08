@@ -46,7 +46,10 @@ const GetStarted = () => {
             application
           </li>
         </ul>
-        <p>Application Fee: ${homeDetails.fee}.00</p>
+        <p>
+          Application Fee: ${homeDetails.fee}.00 (Refundable if Application is
+          not approved)
+        </p>
       </div>
 
       {/* Input field to select move-in date */}
