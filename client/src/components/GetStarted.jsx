@@ -35,10 +35,8 @@ const GetStarted = () => {
         </p>
         <ul className="list-disc list-inside">
           <li>A copy of a valid form of identification</li>
-          <li>30 days proof of income</li>
-          <li>2 years of residential history</li>
+          <li>Proof of income</li>
           <li>Contact information for your rental references</li>
-          <li>Information on your monthly income</li>
           <li>
             Note: Most properties require that applicant combined gross income
             is at least two (2) times the monthly rent amount
