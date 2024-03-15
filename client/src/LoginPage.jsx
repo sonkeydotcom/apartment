@@ -14,7 +14,7 @@ const LoginPage = () => {
 
     try {
       const res = await axios.post(
-        "https://energetic-tunic-bat.cyclic.app/api/users/auth",
+        "https://apartment-1-a24r.onrender.com/api/users/auth",
         value
       );
       if (res.status === 201) {

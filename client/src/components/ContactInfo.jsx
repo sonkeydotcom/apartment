@@ -45,6 +45,12 @@ const ContactInfo = ({ formData, setFormData }) => {
         className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
       />
 
+      <select className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+        <option value="Select">Select</option>
+        <option value={formData.gender}> Male </option>
+        <option value={formData.gender}> Female </option>
+      </select>
+
       <input
         type="date"
         placeholder="Date of Birth"

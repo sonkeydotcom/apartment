@@ -13,7 +13,7 @@ const RegistrationPage = () => {
 
     try {
       const res = await axios.post(
-        "https://energetic-tunic-bat.cyclic.app/api/users/register",
+        "https://apartment-1-a24r.onrender.com/api/users/register",
         value
       );
       if (res.status === 201) {

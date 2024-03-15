@@ -146,7 +146,7 @@ const Application = () => {
     setIsSubmitting(true); // Set isSubmitting to true when starting the submission
     try {
       const response = await axios.post(
-        `https://energetic-tunic-bat.cyclic.app/api/application/${id}`,
+        `https://apartment-1-a24r.onrender.com/api/application/${id}`,
         {
           ...formData,
           name: `${formData.firstName} ${formData.lastName}`,
@@ -165,7 +165,7 @@ const Application = () => {
 
   const successMessage = async () => {
     const response = await axios.post(
-      "https://energetic-tunic-bat.cyclic.app/api/mailer",
+      "https://apartment-1-a24r.onrender.com/api/mailer",
       {
         name: `${formData.firstName} ${formData.lastName}`,
         email: formData.email,

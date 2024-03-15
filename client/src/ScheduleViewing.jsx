@@ -32,7 +32,7 @@ const ScheduleViewing = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://energetic-tunic-bat.cyclic.app/api/rentals/q?id=${id}`
+          `https://apartment-1-a24r.onrender.com/api/rentals/q?id=${id}`
         );
         console.log(response.data);
         setHomeDetails(response.data.listing);
@@ -48,7 +48,7 @@ const ScheduleViewing = () => {
     // Here you can handle form submission, e.g., send data to a server
     try {
       const response = await axios.post(
-        `https://energetic-tunic-bat.cyclic.app/api/schedule/${id}`,
+        `https://apartment-1-a24r.onrender.com/api/schedule/${id}`,
         {
           name: formData.fullName,
           email: formData.email,
@@ -79,7 +79,7 @@ const ScheduleViewing = () => {
 
   const successMessage = async () => {
     const response = await axios.post(
-      "https://energetic-tunic-bat.cyclic.app/api/mail",
+      "https://apartment-1-a24r.onrender.com/api/mail",
       {
         name: formData.fullName,
         email: formData.email,

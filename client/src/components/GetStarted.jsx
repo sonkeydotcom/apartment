@@ -10,7 +10,7 @@ const GetStarted = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://energetic-tunic-bat.cyclic.app/api/rentals/q?id=${id}`
+          `https://apartment-1-a24r.onrender.com/api/rentals/q?id=${id}`
         );
         console.log(response.data);
         setHomeDetails(response.data.listing);
