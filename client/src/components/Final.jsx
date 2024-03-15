@@ -42,7 +42,7 @@ const Final = ({ formData, setFormData }) => {
     <div className="container mx-auto">
       {/* Payment Selection */}
 
-      {homeDetails.fee === 0 ? null : (
+      {homeDetails.fee == 0 ? null : (
         <div className="my-4">
           <label htmlFor="payment" className="text-xl font-semibold mb-2">
             Select Payment Method:
