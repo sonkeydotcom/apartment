@@ -1,8 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const Final = ({ formData, setFormData }) => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const [acknowledged, setAcknowledged] = useState(false);
+
+  const [homeDetails, setHomeDetails] = useState({});
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://apartment-1-a24r.onrender.com/api/rentals/q?id=${id}`
+        );
+        console.log(response.data);
+        setHomeDetails(response.data.listing);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const handlePaymentSelection = (method) => {
     setPaymentMethod(method);
@@ -21,35 +41,38 @@ const Final = ({ formData, setFormData }) => {
   return (
     <div className="container mx-auto">
       {/* Payment Selection */}
-      <div className="my-4">
-        <label htmlFor="payment" className="text-xl font-semibold mb-2">
-          Select Payment Method:
-        </label>
-        <div>
-          <label className="inline-flex items-center">
-            <input
-              type="radio"
-              value="credit_card"
-              checked={formData.paymentMethod === "credit_card"}
-              onChange={(e) =>
-                setFormData({ ...formData, paymentMethod: e.target.value })
-              }
-            />
-            <span className="ml-2">Credit Card</span>
+
+      {homeDetails.fee === 0 ? null : (
+        <div className="my-4">
+          <label htmlFor="payment" className="text-xl font-semibold mb-2">
+            Select Payment Method:
           </label>
-          <label className="inline-flex items-center ml-4">
-            <input
-              type="radio"
-              value="paypal"
-              checked={formData.paymentMethod === "paypal"}
-              onChange={(e) =>
-                setFormData({ ...formData, paymentMethod: e.target.value })
-              }
-            />
-            <span className="ml-2">PayPal</span>
-          </label>
+          <div>
+            <label className="inline-flex items-center">
+              <input
+                type="radio"
+                value="credit_card"
+                checked={formData.paymentMethod === "credit_card"}
+                onChange={(e) =>
+                  setFormData({ ...formData, paymentMethod: e.target.value })
+                }
+              />
+              <span className="ml-2">Credit Card</span>
+            </label>
+            <label className="inline-flex items-center ml-4">
+              <input
+                type="radio"
+                value="mobile_payment"
+                checked={formData.paymentMethod === "mobile_payment"}
+                onChange={(e) =>
+                  setFormData({ ...formData, paymentMethod: e.target.value })
+                }
+              />
+              <span className="ml-2">Mobile Payments</span>
+            </label>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Acknowledgment Pledge */}
       <div className="my-4">

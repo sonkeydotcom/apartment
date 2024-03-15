@@ -60,6 +60,23 @@ const Application = () => {
 
   const navigate = useNavigate();
 
+  const [homeDetails, setHomeDetails] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://apartment-1-a24r.onrender.com/api/rentals/q?id=${id}`
+        );
+        console.log(response.data);
+        setHomeDetails(response.data.listing);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
   const handleChange = (e) => {
     setPaymentMethod(e.target.value); // Update the selected payment method when the dropdown value changes
   };
@@ -84,7 +101,13 @@ const Application = () => {
     } else if (page === 3) {
       return <EmployerInfo formData={formData} setFormData={setFormData} />;
     } else if (page === 4) {
-      return <Questions formData={formData} setFormData={setFormData} />;
+      return (
+        <Questions
+          formData={formData}
+          homeDetails={homeDetails}
+          setFormData={setFormData}
+        />
+      );
     } else {
       return <Final formData={formData} setFormData={setFormData} />;
     }
@@ -160,6 +183,8 @@ const Application = () => {
         }
       );
       console.log(response);
+      setShowPopup(true);
+      successMessage();
     } catch (error) {
       console.error(error);
       setShowError(true); // Set showError state to true to display the error popup

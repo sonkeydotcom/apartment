@@ -18,6 +18,7 @@ const CreateListingPage = () => {
     deposit: "",
     leaseLength: "",
     pets: "",
+    showing: "",
     images: [],
   });
 
@@ -256,6 +257,22 @@ const CreateListingPage = () => {
             <option value="">Select</option>
             <option value="true">Allowed</option>
             <option value="false">Not Allowed</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="showing" className="block mb-1">
+            Showing
+          </label>
+          <select
+            id="showing"
+            name="showing"
+            value={formData.showing}
+            onChange={handleChange}
+            className="border border-gray-300 rounded px-4 py-2 w-full"
+          >
+            <option value="">Select</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
           </select>
         </div>
         <div>

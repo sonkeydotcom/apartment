@@ -55,6 +55,7 @@ const createListing = asyncHandler(async (req, res) => {
     deposit,
     leaseLength,
     pets,
+    showing,
   } = req.body;
 
   if (
@@ -72,7 +73,8 @@ const createListing = asyncHandler(async (req, res) => {
     !fee ||
     !deposit ||
     !leaseLength ||
-    !pets
+    !pets ||
+    !showing
   ) {
     res.status(400);
     throw new Error("All fields are required");
@@ -122,6 +124,7 @@ const createListing = asyncHandler(async (req, res) => {
     deposit,
     leaseLength,
     pets,
+    showing,
     images: imageUrls,
   });
 
