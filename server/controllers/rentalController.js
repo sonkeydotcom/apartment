@@ -17,6 +17,26 @@ const viewListings = asyncHandler(async (req, res) => {
 });
 
 const viewListing = asyncHandler(async (req, res) => {
+  const { id, title } = req.query;
+
+  if (id) {
+    const listing = await Listing.findById(id);
+    if (!listing) {
+      res.status(404);
+      throw new Error("Listing not found");
+    }
+    res.json({ listing }).status(200);
+  }
+
+  if (title) {
+    const listing = await Listing.findOne({ title: title });
+    if (!listing) {
+      res.status(404);
+      throw new Error("Listing not found");
+    }
+    res.json({ listing }).status(200);
+  }
+
   const listing = await Listing.findById(req.params.id);
 
   if (!listing) {
