@@ -5,6 +5,14 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+const Spinner = () => {
+  return (
+    <div className="fixed top-0 left-0 z-50 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
+      <div className="animate-spin rounded-full h-24 w-24 border-t-2 border-b-2 border-gray-900"></div>
+    </div>
+  );
+};
+
 const HomeListing = () => {
   const [homeDetails, setHomeDetails] = useState({});
   const { id } = useParams();
@@ -69,6 +77,7 @@ const HomeListing = () => {
           </div>
         </section>
 
+        {homeDetails.images ? null : <Spinner />}
         <section className="bg-white rounded-lg shadow-md p-6 mb-8">
           {homeDetails.images && homeDetails.images.length > 0 && (
             <Slider
