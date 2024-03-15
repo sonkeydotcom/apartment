@@ -12,7 +12,8 @@ const router = express.Router();
 const s3 = new AWS.S3();
 
 router.get("/", viewListings);
-router.get("/:id", viewListing);
+
+router.get("/q", viewListing);
 
 const storage = multer.memoryStorage();
 const upload = multer({
