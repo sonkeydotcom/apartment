@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PersonalInfo from "./components/PersonalInfo";
 import AddressInfo from "./components/AddressInfo";
 import EmployerInfo from "./components/EmployerInfo";
@@ -47,6 +48,14 @@ const Application = () => {
     keysAddress: "",
   });
   const [paymentMethod, setPaymentMethod] = useState(""); // State to manage the selected payment method
+
+  const [paymentMethods] = useState(["Credit Card", "PayPal", "Venmo"]); // Define the payment methods as an array of strings
+
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(""); // State to manage the selected payment method
+
+  const [user, setUser] = useState(null); // State to store the user data
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setPaymentMethod(e.target.value); // Update the selected payment method when the dropdown value changes
@@ -124,7 +133,6 @@ const Application = () => {
         // Submit the form
 
         submitApplication();
-        successMessage();
       } else {
         setPage(page + 1);
       }
@@ -145,6 +153,7 @@ const Application = () => {
         }
       );
       console.log(response);
+      successMessage();
       setShowPopup(true);
     } catch (error) {
       console.error(error);

@@ -36,14 +36,6 @@ const viewListing = asyncHandler(async (req, res) => {
     }
     res.json({ listing }).status(200);
   }
-
-  const listing = await Listing.findById(req.params.id);
-
-  if (!listing) {
-    res.status(404);
-    throw new Error("Listing not found");
-  }
-  res.json({ listing }).status(200);
 });
 
 const createListing = asyncHandler(async (req, res) => {
