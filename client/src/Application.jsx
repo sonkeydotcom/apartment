@@ -147,7 +147,7 @@ const Application = () => {
       ["address", "city", "state", "zip"], // For Address Information page
       [], // For Employer Information page
       ["evicted", "pets", "smoker", "bankruptcy"], // For Questions page, assuming no required fields
-      ["paymentMethod", "acknowledged"],
+      [],
     ];
 
     // Get the required fields for the current page
