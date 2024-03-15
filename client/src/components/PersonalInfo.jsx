@@ -88,16 +88,18 @@ const PersonalInfo = ({ formData, setFormData }) => {
           >
             Gender
           </label>
-          <input
-            type="text"
-            id="gender"
-            placeholder="Enter your gender"
+
+          <select
             value={formData.gender}
             onChange={(e) =>
               setFormData({ ...formData, gender: e.target.value })
             }
             className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-          />
+          >
+            <option value="">Select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
         </div>
 
         <div>

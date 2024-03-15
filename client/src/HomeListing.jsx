@@ -142,16 +142,19 @@ const HomeListing = () => {
                   {homeDetails.pets ? "Pets allowed" : "Pets not allowed"}
                 </p>
                 <div className="mt-4 flex justify-between">
-                  <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">
-                    <Link to={`/application/${id}`} className="text-white">
-                      Apply
-                    </Link>
-                  </button>
-                  {/*<button className="bg-green-500 text-white px-4 py-2 rounded-lg">
-            <Link to={`/scheduleviewing/${id}`} className="text-white">
-              Schedule Viewing
-            </Link>
-          </button> */}
+                  <Link
+                    to={`/application/${id}`}
+                    className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+                  >
+                    Apply
+                  </Link>
+
+                  <Link
+                    to={`/scheduleviewing/${id}`}
+                    className="bg-green-500 text-white px-4 py-2 rounded-lg"
+                  >
+                    Schedule Viewing
+                  </Link>
                 </div>
               </div>
             </div>
