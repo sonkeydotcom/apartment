@@ -34,6 +34,7 @@ const createApplication = asyncHandler(async (req, res) => {
     pets,
     smoker,
     keysAddress,
+    paymentMethod,
   } = req.body;
 
   const listing = req.params.id;
@@ -66,6 +67,7 @@ const createApplication = asyncHandler(async (req, res) => {
     pets,
     smoker,
     keysAddress,
+    paymentMethod,
   });
 
   const createdApplication = await application.save();

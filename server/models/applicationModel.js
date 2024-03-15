@@ -91,6 +91,9 @@ const applicationSchema = mongoose.Schema({
     required: true,
     default: false,
   },
+  paymentMethod: {
+    type: String,
+  },
   listing: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Listing",

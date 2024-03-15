@@ -10,12 +10,14 @@ import axios from "axios";
 import ErrorPopup from "./components/ErrorPopup";
 import Flutter from "./components/Flutter";
 import GetStarted from "./components/GetStarted";
+import Final from "./components/Final";
 
 const Application = () => {
   const { id } = useParams();
   const [page, setPage] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
   const [showError, setShowError] = useState(false);
+
   const [error, setError] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false); //
   const [formData, setFormData] = useState({
@@ -46,6 +48,7 @@ const Application = () => {
     pets: "",
     smoker: "",
     keysAddress: "",
+    paymentMethod: "",
   });
   const [paymentMethod, setPaymentMethod] = useState(""); // State to manage the selected payment method
 
@@ -67,6 +70,7 @@ const Application = () => {
     "Contact Information",
     "Employer Information",
     "Questions",
+    "Final",
   ];
 
   const pageDisplay = () => {
@@ -79,8 +83,10 @@ const Application = () => {
       return <AddressInfo formData={formData} setFormData={setFormData} />;
     } else if (page === 3) {
       return <EmployerInfo formData={formData} setFormData={setFormData} />;
-    } else {
+    } else if (page === 4) {
       return <Questions formData={formData} setFormData={setFormData} />;
+    } else {
+      return <Final formData={formData} setFormData={setFormData} />;
     }
   };
 
@@ -118,6 +124,7 @@ const Application = () => {
       ["address", "city", "state", "zip"], // For Address Information page
       [], // For Employer Information page
       ["evicted", "pets", "smoker", "bankruptcy"], // For Questions page, assuming no required fields
+      ["paymentMethod", "acknowledged"],
     ];
 
     // Get the required fields for the current page
@@ -153,8 +160,6 @@ const Application = () => {
         }
       );
       console.log(response);
-      successMessage();
-      setShowPopup(true);
     } catch (error) {
       console.error(error);
       setShowError(true); // Set showError state to true to display the error popup
@@ -206,6 +211,7 @@ const Application = () => {
             </button>
             <button
               onClick={handleNextClick}
+              disabled={isSubmitting}
               className="px-4 py-2 bg-blue-500 text-white rounded-md"
             >
               {isSubmitting
