@@ -2,6 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Outlet, Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Slider from "react-slick";
+import { FcCalendar, FcHome, FcRuler } from "react-icons/fc";
+import { MdOutlinePets } from "react-icons/md";
+import {
+  FaDollarSign,
+  FaParking,
+  FaMapMarkerAlt,
+  FaQuoteLeft,
+} from "react-icons/fa";
+import { MdOutlineLocalLaundryService } from "react-icons/md";
+import { PiMapPinLineDuotone } from "react-icons/pi";
+import { CiDollar } from "react-icons/ci";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -103,30 +114,32 @@ const HomeListing = () => {
 
           <div className="p-4">
             <h2 className="text-xl font-bold text-slate-800 mb-4">
-              Property Details
+              Property Details for {homeDetails.rent}
             </h2>
+            <p className="text-gray-700 text-xl mb-4">
+              <span className="font-bold">${homeDetails.rent}</span>/mo{" "}
+              <span className="font-bold">{homeDetails.beds}</span> bd |{" "}
+              <span className="font-bold">{homeDetails.baths}</span> ba |{" "}
+              <span className="font-bold">{homeDetails.sqft} </span> sqft
+            </p>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="text-gray-700 mb-2">
-                  <span className="font-bold">Availability:</span>{" "}
+                <p className="flex items-center text-gray-700 mb-2">
+                  <FcCalendar />
+
+                  <span className="font-bold"> Availability:</span>
                   {homeDetails.availability}
                 </p>
-                <p className="text-gray-700 mb-2">
-                  <span className="font-bold">Rent:</span> ${homeDetails.rent}
+
+                <p className="flex items-center text-gray-700 mb-2">
+                  <FaDollarSign />
+                  <span className="font-bold"> Deposit & Fees: </span> $
+                  {homeDetails.deposit},
+                  {homeDetails.fee ? ` $${homeDetails.fee}` : null}{" "}
                 </p>
-                <p className="text-gray-700 mb-2">
-                  <span className="font-bold">Security Deposit:</span> $
-                  {homeDetails.deposit}
-                </p>
-                <p className="text-gray-700 mb-2">
-                  <span className="font-bold">Application Fee:</span> $
-                  {homeDetails.fee}
-                </p>
-                <p className="text-gray-700 mb-2">
-                  <span className="font-bold">Square Feet:</span>{" "}
-                  {homeDetails.sqft}
-                </p>
-                <p className="text-gray-700 mb-2">
+
+                <p className="flex items-center text-gray-700 mb-2">
+                  <FaMapMarkerAlt />
                   <span className="font-bold">Location:</span>{" "}
                   {homeDetails.location}
                 </p>
@@ -140,15 +153,35 @@ const HomeListing = () => {
                 </p>
               </div>
               <div>
-                <p className="text-gray-700 mb-2">
-                  <span className="font-bold">Beds:</span> {homeDetails.beds}
+                <p className="text-gray-700 mb-2"></p>
+
+                <p className="flex items-center text-gray-700 mb-2">
+                  <FaParking />
+                  <span> Attached Garage </span>{" "}
                 </p>
-                <p className="text-gray-700 mb-2">
-                  <span className="font-bold">Baths:</span> {homeDetails.baths}
+                <p className="flex items-center text-gray-700 mb-2">
+                  <MdOutlineLocalLaundryService />
+                  <span>
+                    {" "}
+                    {homeDetails.laundry
+                      ? homeDetails.laundry
+                      : "Contact agent"}{" "}
+                  </span>{" "}
                 </p>
-                <p className="text-gray-700 mb-2">
-                  <span className="font-bold">Pet Policy:</span>{" "}
-                  {homeDetails.pets ? "Pets allowed" : "Pets not allowed"}
+                <p className="flex items-center text-gray-700 mb-2">
+                  <MdOutlinePets />
+                  <span>
+                    {" "}
+                    {homeDetails.pets
+                      ? " Pets allowed"
+                      : " Pets not allowed"}{" "}
+                  </span>{" "}
+                </p>
+                <p className="flex items-center text-gray-700 mb-2">
+                  <FaQuoteLeft />
+                  {homeDetails.description
+                    ? homeDetails.description
+                    : "No description available"}
                 </p>
                 <div className="mt-4 flex justify-between">
                   <Link
