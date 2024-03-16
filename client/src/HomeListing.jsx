@@ -54,8 +54,8 @@ const HomeListing = () => {
             <p className="text-base text-gray-800 mb-8">
               Please feel free to self schedule below. For your convenience, our
               showing availability is provided on the calendar. Just select a
-              time that works for you and our leasing agent will meet you at the
-              property at the scheduled time. Thanks!
+              time that works for you and the leasing agent/landlord will meet
+              you at the property at the scheduled time. Thanks!
             </p>
             <p className="text-base text-gray-800 font-medium">
               Note: When scheduling your showing, please provide a valid cell
