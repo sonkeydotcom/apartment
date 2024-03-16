@@ -1,7 +1,21 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const CreateListingPage = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { userInfo } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (!userInfo) {
+      navigate("/login");
+    }
+  }, [navigate, userInfo]);
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const [formData, setFormData] = useState({
     title: "",
     rent: "",
@@ -20,6 +34,7 @@ const CreateListingPage = () => {
     pets: "",
     showing: "",
     images: [],
+    user: userInfo._id,
   });
 
   const handleChange = (e) => {
@@ -29,6 +44,7 @@ const CreateListingPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     // Create a new FormData instance
     const data = new FormData();
@@ -50,8 +66,11 @@ const CreateListingPage = () => {
         "https://apartment-1-a24r.onrender.com/api/rentals",
         data // Send the FormData instance
       );
+      setIsLoading(false);
+      navigate("/");
       console.log(response.data);
     } catch (error) {
+      setIsLoading(false);
       console.error(error);
     }
   };
@@ -296,7 +315,7 @@ const CreateListingPage = () => {
           onClick={handleSubmit}
           className="bg-blue-500 text-white px-4 py-2 rounded-lg"
         >
-          Submit
+          {isLoading ? "Creating listing..." : "Create Listing"}
         </button>
       </form>
     </div>

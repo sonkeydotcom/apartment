@@ -38,8 +38,6 @@ const viewListing = asyncHandler(async (req, res) => {
   }
 });
 
-M;
-
 const createListing = asyncHandler(async (req, res) => {
   const {
     title,

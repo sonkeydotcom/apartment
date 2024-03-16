@@ -10,7 +10,9 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [login, { isLoading }] = useLoginMutation();
+  const [loginMutation, { isLoading }] = useLoginMutation();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const { userInfo } = useSelector((state) => state.auth);
 
@@ -20,24 +22,19 @@ const LoginPage = () => {
     }
   }, [navigate, userInfo]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const data = new FormData(e.target);
-    const value = Object.fromEntries(data.entries());
 
-    try {
-      const res = await login({
-        email: value.email,
-        password: value.password,
-      }).unwrap();
-      dispatch(login(...res));
-      navigate("/create-listing");
-    } catch (err) {
-      console.error(err?.data?.message || err.message);
-      setError("Invalid email or password");
-    }
-
-    console.log(value);
+    dispatch(async (dispatch) => {
+      try {
+        const res = await loginMutation({ email, password }).unwrap();
+        dispatch(login(res));
+        navigate("/create-listing");
+      } catch (err) {
+        console.error(err?.data?.message || err.message);
+        setError("Invalid email or password");
+      }
+    });
   };
 
   return (
@@ -66,6 +63,8 @@ const LoginPage = () => {
                   name="email"
                   type="email"
                   autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
@@ -83,6 +82,8 @@ const LoginPage = () => {
                 <input
                   id="password"
                   name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   type="password"
                   autoComplete="current-password"
                   required
