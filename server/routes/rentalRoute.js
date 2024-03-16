@@ -2,6 +2,8 @@ import express from "express";
 import multer from "multer";
 import AWS from "aws-sdk";
 import path from "path";
+
+import { protect } from "../middleware/authMiddleware.js";
 import {
   viewListings,
   createListing,
@@ -21,6 +23,6 @@ const upload = multer({
   limits: { fileSize: 1024 * 1024 * 5 },
 });
 
-router.post("/", upload.array("images", 12), createListing);
+router.post("/", protect, upload.array("images", 12), createListing);
 
 export default router;

@@ -3,6 +3,7 @@ import multer from "multer";
 import Listing from "../models/listingModel.js";
 import dotenv from "dotenv";
 import AWS from "aws-sdk";
+import User from "../models/userModel.js";
 
 dotenv.config();
 
@@ -64,6 +65,8 @@ const createListing = asyncHandler(async (req, res) => {
     return file.location;
   });
 
+  const userId = req.user._id; // Get the authenticated user's ID from req.user
+
   // Configure AWS SDK with your credentials
   AWS.config.update({
     accessKeyId: process.env.MY_AWS_ACCESS_KEY_ID,
@@ -88,8 +91,6 @@ const createListing = asyncHandler(async (req, res) => {
 
   const imageUrls = uploadedImages.map((data) => data.Location);
 
-  const user = req.user._id;
-
   const listing = new Listing({
     title,
     rent,
@@ -110,7 +111,7 @@ const createListing = asyncHandler(async (req, res) => {
     parking,
     laundry,
     images: imageUrls,
-    user,
+    user: userId, // Assign the authenticated user's ID to the listing's user field
   });
 
   const createdListing = await listing.save();

@@ -203,7 +203,6 @@ const HomeListing = () => {
               viewBox="0 0 64 64"
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
-              class="ds-listing-agent-image"
               alt="listing agent"
             >
               <title>Avatar/MD</title>
@@ -211,11 +210,11 @@ const HomeListing = () => {
               <g
                 id="Page-1"
                 stroke="none"
-                stroke-width="1"
+                strokeWidth="1"
                 fill="none"
-                fill-rule="evenodd"
+                fillRule="evenodd"
               >
-                <g id="Artboard" fill-rule="nonzero">
+                <g id="Artboard" fillRule="nonzero">
                   <g id="Avatar/MD">
                     <g id="Avatar/Type/MD/Null">
                       <circle

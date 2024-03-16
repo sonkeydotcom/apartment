@@ -7,6 +7,7 @@ import applicationRoute from "./routes/applicationRoute.js";
 import userRoute from "./routes/userRoute.js";
 import mailRoute from "./routes/mailRoute.js";
 import mailerRoute from "./routes/mailerRoute.js";
+import cookieParser from "cookie-parser";
 import cors from "cors";
 import { notFound, errorHandler } from "./middleware/errorMiddlware.js";
 
@@ -24,6 +25,8 @@ connectDB();
 
 app.use(express.static("public"));
 app.use("/uploads", express.static("uploads"));
+
+app.use(cookieParser());
 
 // Middleware to parse JSON bodies
 app.use(express.json());

@@ -34,7 +34,7 @@ const CreateListingPage = () => {
     pets: "",
     showing: "",
     images: [],
-    user: userInfo._id,
+    email: "annagu.kennedy@gmail.com",
   });
 
   const handleChange = (e) => {
@@ -67,7 +67,7 @@ const CreateListingPage = () => {
         data // Send the FormData instance
       );
       setIsLoading(false);
-      navigate("/");
+
       console.log(response.data);
     } catch (error) {
       setIsLoading(false);
