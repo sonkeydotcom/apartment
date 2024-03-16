@@ -12,11 +12,13 @@ const listingSchema = mongoose.Schema({
   appliances: { type: Array },
   amenities: { type: Array },
   availability: { type: String, required: true },
-  fee: { type: String, required: true },
+  fee: { type: String },
   deposit: { type: String, required: true },
   leaseLength: { type: Number },
-  pets: { type: Boolean, required: true },
+  pets: { type: Boolean },
   showing: { type: Boolean, default: false },
+  parking: { type: String },
+  laundry: { type: String },
   images: [{ type: String }],
 });
 const Listing = mongoose.model("Listing", listingSchema);

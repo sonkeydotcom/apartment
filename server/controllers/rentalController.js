@@ -56,29 +56,9 @@ const createListing = asyncHandler(async (req, res) => {
     leaseLength,
     pets,
     showing,
+    parking,
+    laundry,
   } = req.body;
-
-  if (
-    !title ||
-    !rent ||
-    !beds ||
-    !baths ||
-    !sqft ||
-    !location ||
-    !description ||
-    !utilities ||
-    !appliances ||
-    !amenities ||
-    !availability ||
-    !fee ||
-    !deposit ||
-    !leaseLength ||
-    !pets ||
-    !showing
-  ) {
-    res.status(400);
-    throw new Error("All fields are required");
-  }
 
   const images = req.files.map((file) => {
     return file.location;
@@ -125,6 +105,8 @@ const createListing = asyncHandler(async (req, res) => {
     leaseLength,
     pets,
     showing,
+    parking,
+    laundry,
     images: imageUrls,
   });
 

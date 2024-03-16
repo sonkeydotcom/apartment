@@ -93,7 +93,7 @@ const HomeListing = () => {
 
           <div className="p-4">
             <h2 className="text-xl font-bold text-slate-800 mb-4">
-              Property Details for {homeDetails.rent}
+              Property Details
             </h2>
             <p className="text-gray-700 text-xl mb-4">
               <span className="font-bold">${homeDetails.rent}</span>/mo{" "}
@@ -130,6 +130,7 @@ const HomeListing = () => {
                 </p>
               </div>
               <div>
+                <p className="text-gray-700 font-bold mb-2"> Features </p>
                 <p className="flex items-center text-gray-700 mb-2">
                   <FaParking />
                   <span> Attached Garage </span>{" "}
