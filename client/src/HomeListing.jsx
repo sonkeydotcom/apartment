@@ -43,35 +43,14 @@ const HomeListing = () => {
     fetchData();
   }, []);
 
-  const hometails = {
-    availability: "Available Now",
-    rent: "$2000/month",
-    squareFeet: "1500 sq ft",
-    location: "123 Main Street, Anytown, USA",
-    amenities: ["Swimming Pool", "Gym", "Parking"],
-    beds: 3,
-    baths: 2,
-    imageSrc: "path_to_image.jpg", // Replace with the actual image path
-  };
-
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
   return (
     <div className="min-h-screen bg-gray-100">
       <header className="bg-slate-800 text-gray-100 py-4 text-center">
         <h1 className="text-2xl font-bold">Halstead Properties</h1>
       </header>
       <main className="max-w-2xl mx-auto py-8 px-4">
-        <section className="bg-zinc-300  p-6 mb-8">
+        <section className="bg-zinc-300 p-6 mb-8">
           <div className="max-w-5xl mx-auto">
-            {" "}
-            {/* Adjusted: added max-w-5xl */}
             <p className="text-base text-gray-800 mb-8">
               Please feel free to self schedule below. For your convenience, our
               showing availability is provided on the calendar. Just select a
@@ -122,12 +101,11 @@ const HomeListing = () => {
               <span className="font-bold">{homeDetails.baths}</span> ba |{" "}
               <span className="font-bold">{homeDetails.sqft} </span> sqft
             </p>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <p className="flex items-center text-gray-700 mb-2">
                   <FcCalendar />
-
-                  <span className="font-bold"> Availability:</span>
+                  <span className="font-bold"> Availability:</span>{" "}
                   {homeDetails.availability}
                 </p>
 
@@ -140,7 +118,6 @@ const HomeListing = () => {
 
                 <p className="flex items-center text-gray-700 mb-2">
                   <FaMapMarkerAlt />
-                  <span className="font-bold">Location:</span>{" "}
                   {homeDetails.location}
                 </p>
                 <p className="text-gray-700 mb-2">
@@ -153,8 +130,6 @@ const HomeListing = () => {
                 </p>
               </div>
               <div>
-                <p className="text-gray-700 mb-2"></p>
-
                 <p className="flex items-center text-gray-700 mb-2">
                   <FaParking />
                   <span> Attached Garage </span>{" "}
