@@ -20,6 +20,11 @@ const listingSchema = mongoose.Schema({
   parking: { type: String },
   laundry: { type: String },
   images: [{ type: String }],
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "User",
+  },
 });
 const Listing = mongoose.model("Listing", listingSchema);
 

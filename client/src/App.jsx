@@ -7,6 +7,7 @@ import Payment from "./Payment";
 import CreateListingPage from "./CreateListingPage";
 import LoginPage from "./LoginPage";
 import RegistrationPage from "./RegistrationPage";
+import ContactUs from "./ContactUs";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="payment" element={<Payment />}></Route>
         <Route path="login" element={<LoginPage />}></Route>
         <Route path="register" element={<RegistrationPage />}></Route>
+        <Route path="contactus" element={<ContactUs />}></Route>
 
         <Route path="create-listing" element={<CreateListingPage />}></Route>
       </Routes>

@@ -16,6 +16,9 @@ import { CiDollar } from "react-icons/ci";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+// Sample avatar image
+import avatarImage from "./assets/avatar.png";
+
 const Spinner = () => {
   return (
     <div className="fixed top-0 left-0 z-50 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
@@ -42,6 +45,14 @@ const HomeListing = () => {
     };
     fetchData();
   }, []);
+
+  // Sample owner information
+  const listedBy = {
+    name: "Mac Ross",
+    phoneNumber: "(267) 282-3936",
+    email: "macross@example.com",
+    avatar: avatarImage,
+  };
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -180,6 +191,58 @@ const HomeListing = () => {
             </div>
           </div>
         </section>
+
+        {/* Listed by section */}
+        <section className="bg-white rounded-lg shadow-md p-6 mb-8">
+          <h2 className="text-xl font-bold text-slate-800 mb-4">Listed by</h2>
+          <div className="flex items-center">
+            <svg
+              className="w-12 h-12 rounded-full mr-4"
+              width="64px"
+              height="64px"
+              viewBox="0 0 64 64"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              class="ds-listing-agent-image"
+              alt="listing agent"
+            >
+              <title>Avatar/MD</title>
+              <desc>Created with Sketch.</desc>
+              <g
+                id="Page-1"
+                stroke="none"
+                stroke-width="1"
+                fill="none"
+                fill-rule="evenodd"
+              >
+                <g id="Artboard" fill-rule="nonzero">
+                  <g id="Avatar/MD">
+                    <g id="Avatar/Type/MD/Null">
+                      <circle
+                        id="Base"
+                        fill="#EEEEEE"
+                        cx="32"
+                        cy="32"
+                        r="32"
+                      ></circle>
+                      <path
+                        d="M32.2,16 C36.5676519,16 40.1083333,20.021366 40.1083333,24.9819724 C40.1083333,27.8326954 38.5631727,30.5772107 36.6652201,32.1992738 C36.4005966,32.4254312 35.8722793,33.0467833 36.9774068,33.3823881 C42.7100761,34.9124369 46.8,38.9625875 46.8,42.9282903 C46.8,47.9417776 17.6,47.9417776 17.6,42.9282903 C17.6,38.9625875 21.6899239,34.9124369 27.3902255,33.3927439 C28.5277207,33.0467833 27.9994034,32.4254312 27.7347799,32.1992738 C25.8368273,30.5772107 24.2916667,27.8326954 24.2916667,24.9819724 C24.2916667,20.021366 27.8323481,16 32.2,16 L32.2,16 Z"
+                        id="Combined-Shape"
+                        fill="#CCCCCC"
+                      ></path>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </svg>
+            <div>
+              <h3 className="text-lg font-semibold">{listedBy.name}</h3>
+              <p className="text-gray-700">{listedBy.phoneNumber}</p>
+              <p className="text-gray-700">{listedBy.email}</p>
+            </div>
+          </div>
+        </section>
+
         <footer className="bg-slate-800 text-gray-100 py-4 text-center">
           <p>&copy; 2024 Halstead Realty</p>
         </footer>

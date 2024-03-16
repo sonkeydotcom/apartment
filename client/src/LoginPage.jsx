@@ -1,11 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { useLoginMutation } from "./slices/usersApiSlice";
+import { login } from "./slices/authSlice";
 
 const LoginPage = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [login, { isLoading }] = useLoginMutation();
+
+  const { userInfo } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/create-listing");
+    }
+  }, [navigate, userInfo]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,16 +26,14 @@ const LoginPage = () => {
     const value = Object.fromEntries(data.entries());
 
     try {
-      const res = await axios.post(
-        "https://apartment-1-a24r.onrender.com/api/users/auth",
-        value
-      );
-      if (res.status === 201) {
-        // Redirect to another page upon successful login
-        navigate("/create-listing");
-      }
-    } catch (error) {
-      console.error(error);
+      const res = await login({
+        email: value.email,
+        password: value.password,
+      }).unwrap();
+      dispatch(login(...res));
+      navigate("/create-listing");
+    } catch (err) {
+      console.error(err?.data?.message || err.message);
       setError("Invalid email or password");
     }
 

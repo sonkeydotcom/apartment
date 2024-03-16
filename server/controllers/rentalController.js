@@ -38,6 +38,8 @@ const viewListing = asyncHandler(async (req, res) => {
   }
 });
 
+M;
+
 const createListing = asyncHandler(async (req, res) => {
   const {
     title,
@@ -88,6 +90,8 @@ const createListing = asyncHandler(async (req, res) => {
 
   const imageUrls = uploadedImages.map((data) => data.Location);
 
+  const user = req.user._id;
+
   const listing = new Listing({
     title,
     rent,
@@ -108,6 +112,7 @@ const createListing = asyncHandler(async (req, res) => {
     parking,
     laundry,
     images: imageUrls,
+    user,
   });
 
   const createdListing = await listing.save();

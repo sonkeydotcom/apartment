@@ -244,10 +244,7 @@ const Home = () => {
               </li>
 
               <li>
-                <a href="#">About Us</a>
-              </li>
-              <li>
-                <a href="#">Contact</a>
+                <Link to="/contactus">Contact us</Link>
               </li>
             </ul>
           </div>
