@@ -59,14 +59,12 @@ const createListing = asyncHandler(async (req, res) => {
     showing,
     parking,
     laundry,
+    userId,
   } = req.body;
 
   const images = req.files.map((file) => {
     return file.location;
   });
-
-  const userId = req.user._id; // Get the authenticated user's ID from req.user
-
   // Configure AWS SDK with your credentials
   AWS.config.update({
     accessKeyId: process.env.MY_AWS_ACCESS_KEY_ID,
@@ -111,7 +109,7 @@ const createListing = asyncHandler(async (req, res) => {
     parking,
     laundry,
     images: imageUrls,
-    user: userId, // Assign the authenticated user's ID to the listing's user field
+    userId, // Assign the authenticated user's ID to the listing's user field
   });
 
   const createdListing = await listing.save();

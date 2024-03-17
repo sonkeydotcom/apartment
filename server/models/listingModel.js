@@ -19,12 +19,8 @@ const listingSchema = mongoose.Schema({
   showing: { type: Boolean, default: false },
   parking: { type: String },
   laundry: { type: String },
+  userId: { type: String },
   images: [{ type: String }],
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: "User",
-  },
 });
 const Listing = mongoose.model("Listing", listingSchema);
 

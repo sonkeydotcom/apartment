@@ -11,7 +11,13 @@ const CreateListingPage = () => {
   useEffect(() => {
     if (!userInfo) {
       navigate("/login");
+    } else {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        userId: userInfo._id, // assuming userInfo has an _id field
+      }));
     }
+    console.log(userInfo._id);
   }, [navigate, userInfo]);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +40,10 @@ const CreateListingPage = () => {
     pets: "",
     showing: "",
     images: [],
-    email: "annagu.kennedy@gmail.com",
+    userId: "",
+    listedbyName: "",
+    listedbyEmail: "",
+    listedbyPhone: "",
   });
 
   const handleChange = (e) => {
@@ -63,9 +72,10 @@ const CreateListingPage = () => {
 
     try {
       const response = await axios.post(
-        "https://apartment-1-a24r.onrender.com/api/rentals",
+        "http://localhost:3000/api/rentals",
         data // Send the FormData instance
       );
+      navigate(`/homelisting/${response.createdListing._id}`); //navigate(`/homelisting/${response.createdListing._id}`);
       setIsLoading(false);
 
       console.log(response.data);
@@ -258,6 +268,46 @@ const CreateListingPage = () => {
             id="leaseLength"
             name="leaseLength"
             value={formData.leaseLength}
+            onChange={handleChange}
+            className="border border-gray-300 rounded px-4 py-2 w-full"
+          />
+        </div>
+        {/* Listed By */}
+        <div>
+          <label htmlFor="listedbyName" className="block mb-1">
+            Listed By Name
+          </label>
+          <input
+            type="text"
+            id="listedbyName"
+            name="listedbyName"
+            value={formData.listedbyName}
+            onChange={handleChange}
+            className="border border-gray-300 rounded px-4 py-2 w-full"
+          />
+        </div>
+        <div>
+          <label htmlFor="listedbyEmail" className="block mb-1">
+            Listed By Email
+          </label>
+          <input
+            type="email"
+            id="listedbyEmail"
+            name="listedbyEmail"
+            value={formData.listedbyEmail}
+            onChange={handleChange}
+            className="border border-gray-300 rounded px-4 py-2 w-full"
+          />
+        </div>
+        <div>
+          <label htmlFor="listedbyEmail" className="block mb-1">
+            Listed By Phone
+          </label>
+          <input
+            type="tel"
+            id="listedbyPhone"
+            name="listedbyPhone"
+            value={formData.listedbyPhone}
             onChange={handleChange}
             className="border border-gray-300 rounded px-4 py-2 w-full"
           />
