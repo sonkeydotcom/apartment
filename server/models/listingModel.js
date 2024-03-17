@@ -19,7 +19,9 @@ const listingSchema = mongoose.Schema({
   showing: { type: Boolean, default: false },
   parking: { type: String },
   laundry: { type: String },
-  userId: { type: String },
+  listedbyName: { type: String },
+  listedbyEmail: { type: String },
+  listedbyPhone: { type: String },
   images: [{ type: String }],
 });
 const Listing = mongoose.model("Listing", listingSchema);

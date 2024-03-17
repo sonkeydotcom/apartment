@@ -45,11 +45,11 @@ const GetStarted = () => {
             Each resident over the age of 18 must submit a separate rental
             application
           </li>
+
+          {homeDetails.fee && (
+            <li> Application fee of ${homeDetails.fee} per applicant</li>
+          )}
         </ul>
-        <p>
-          Application Fee: ${homeDetails.fee}.00 (Refundable if Application is
-          not approved)
-        </p>
       </div>
 
       {/* Input field to select move-in date */}

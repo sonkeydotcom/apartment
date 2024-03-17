@@ -67,8 +67,6 @@ const ScheduleViewing = () => {
     } catch (error) {
       console.error("Error submitting data:", error);
     }
-
-    console.log(id);
   };
 
   const formattedDate = moment(formData.preferredDate).format(

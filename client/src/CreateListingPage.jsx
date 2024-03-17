@@ -1,23 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const CreateListingPage = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (!userInfo) {
       navigate("/login");
-    } else {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        userId: userInfo._id, // assuming userInfo has an _id field
-      }));
     }
-    console.log(userInfo._id);
   }, [navigate, userInfo]);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -40,7 +33,8 @@ const CreateListingPage = () => {
     pets: "",
     showing: "",
     images: [],
-    userId: "",
+    parking: "",
+    laundry: "",
     listedbyName: "",
     listedbyEmail: "",
     listedbyPhone: "",
@@ -72,10 +66,10 @@ const CreateListingPage = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/rentals",
+        "https://apartment-1-a24r.onrender.com/api/rentals",
         data // Send the FormData instance
       );
-      navigate(`/homelisting/${response.createdListing._id}`); //navigate(`/homelisting/${response.createdListing._id}`);
+      navigate(`/homelisting/${response.data.createdListing._id}`); //navigate(`/homelisting/${response.createdListing._id}`);
       setIsLoading(false);
 
       console.log(response.data);
@@ -308,6 +302,32 @@ const CreateListingPage = () => {
             id="listedbyPhone"
             name="listedbyPhone"
             value={formData.listedbyPhone}
+            onChange={handleChange}
+            className="border border-gray-300 rounded px-4 py-2 w-full"
+          />
+        </div>
+        <div>
+          <label htmlFor="parking" className="block mb-1">
+            Parking
+          </label>
+          <input
+            type="text"
+            id="parking"
+            name="parking"
+            value={formData.parking}
+            onChange={handleChange}
+            className="border border-gray-300 rounded px-4 py-2 w-full"
+          />
+        </div>
+        <div>
+          <label htmlFor="laundry" className="block mb-1">
+            Laundry
+          </label>
+          <input
+            type="text"
+            id="laundry"
+            name="laundry"
+            value={formData.laundry}
             onChange={handleChange}
             className="border border-gray-300 rounded px-4 py-2 w-full"
           />

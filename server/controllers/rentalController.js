@@ -59,7 +59,9 @@ const createListing = asyncHandler(async (req, res) => {
     showing,
     parking,
     laundry,
-    userId,
+    listedbyName,
+    listedbyEmail,
+    listedbyPhone
   } = req.body;
 
   const images = req.files.map((file) => {
@@ -108,8 +110,11 @@ const createListing = asyncHandler(async (req, res) => {
     showing,
     parking,
     laundry,
+    listedbyName,
+    listedbyEmail,
+    listedbyPhone,
     images: imageUrls,
-    userId, // Assign the authenticated user's ID to the listing's user field
+    
   });
 
   const createdListing = await listing.save();

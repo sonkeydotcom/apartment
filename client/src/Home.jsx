@@ -230,23 +230,35 @@ const Home = () => {
 
       {/* Footer */}
       <footer className="bg-gray-800 text-white py-4">
-        <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
-          <div>
-            <p>&copy;2024 Halsteadrealty. All rights reserved.</p>
-            {/* Contact information */}
-            <p>E-mail: support@halsteadrealty.rent | Tel: 123-456-7890</p>
+        <div className="container mx-auto flex flex-col items-center">
+          <p className="text-sm mb-2">
+            &copy; 2024 Halstead Realty. All rights reserved.
+          </p>
+          <div className="flex space-x-4 mb-4">
+            
+            <Link to="/login" className="text-sm hover:text-blue-400">
+              Landlord
+            </Link>
+            <Link to="/services" className="text-sm hover:text-blue-400">
+              Services
+            </Link>
+            <Link to="/about" className="text-sm hover:text-blue-400">
+              About Us
+            </Link>
+            <Link to="/contact" className="text-sm hover:text-blue-400">
+              Contact Us
+            </Link>
           </div>
-          <div>
-            {/* Footer links */}
-            <ul className="flex space-x-4">
-              <li>
-                <Link to="/login">Landlord</Link>
-              </li>
-
-              <li>
-                <Link to="/contactus">Contact us</Link>
-              </li>
-            </ul>
+          <div className="flex space-x-4">
+            <a href="#" className="text-sm hover:text-blue-400">
+              Facebook
+            </a>
+            <a href="#" className="text-sm hover:text-blue-400">
+              Twitter
+            </a>
+            <a href="#" className="text-sm hover:text-blue-400">
+              Instagram
+            </a>
           </div>
         </div>
       </footer>

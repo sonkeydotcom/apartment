@@ -27,7 +27,7 @@ const Spinner = () => {
   );
 };
 
-const HomeListing = () => {
+const Detail = () => {
   const [homeDetails, setHomeDetails] = useState({});
   const { id } = useParams();
 
@@ -80,7 +80,7 @@ const HomeListing = () => {
 
         {homeDetails.images ? null : <Spinner />}
         <section className="bg-white rounded-lg shadow-md p-6 mb-8">
-          {homeDetails.images && homeDetails.images.length > 0 && (
+          {homeDetails.images && (
             <Slider
               dots
               infinite
@@ -121,10 +121,23 @@ const HomeListing = () => {
                 </p>
 
                 <p className="flex items-center text-gray-700 mb-2">
-                  <FaDollarSign />
-                  <span className="font-bold"> Deposit & Fees: </span> $
-                  {homeDetails.deposit},
-                  {homeDetails.fee ? ` $${homeDetails.fee}` : null}{" "}
+                  <span className="font-bold"> Deposit: </span> $
+                  {homeDetails.deposit}
+                </p>
+
+                <p className="flex items-center text-gray-700 mb-2">
+                  Applicants must be prepared to pay the security deposit
+                  immediately upon approval of application.{" "}
+                </p>
+                {homeDetails.fee && (
+                  <p className="flex items-center text-gray-700 mb-2">
+                    <span className="font-bold"> Application Fee: </span> $
+                    {homeDetails.fee}
+                  </p>
+                )}
+                <p className="flex items-center text-gray-700 mb-2">
+                  <span className="font-bold"> Lease: </span>{" "}
+                  {homeDetails.leaseLength}months min lease
                 </p>
 
                 <p className="flex items-center text-gray-700 mb-2">
@@ -155,15 +168,19 @@ const HomeListing = () => {
                       : "Contact agent"}{" "}
                   </span>{" "}
                 </p>
-                <p className="flex items-center text-gray-700 mb-2">
-                  <MdOutlinePets />
-                  <span>
-                    {" "}
-                    {homeDetails.pets
-                      ? " Pets allowed"
-                      : " Pets not allowed"}{" "}
-                  </span>{" "}
-                </p>
+
+                {homeDetails.pets && (
+                  <>
+                    <p className="flex items-center text-gray-700 mb-2">
+                      <MdOutlinePets />
+                      <span>Cats and Dogs allowed </span>
+                    </p>
+                    <p>
+                      A one-time, non-refundable pet fee of $300.00 for the
+                      first pet and $150.00 for the second pet
+                    </p>
+                  </>
+                )}
                 <p className="flex items-center text-gray-700 mb-2">
                   <FaQuoteLeft />
                   {homeDetails.description
@@ -185,7 +202,9 @@ const HomeListing = () => {
                     >
                       Schedule Viewing
                     </Link>
-                  ) : null}
+                  ) : (
+                    <p className="mx-2">In Person showing not Available</p>
+                  )}
                 </div>
               </div>
             </div>
@@ -235,9 +254,11 @@ const HomeListing = () => {
               </g>
             </svg>
             <div>
-              <h3 className="text-lg font-semibold">{listedBy.name}</h3>
-              <p className="text-gray-700">{listedBy.phoneNumber}</p>
-              <p className="text-gray-700">{listedBy.email}</p>
+              <h3 className="text-lg capitalize font-semibold">
+                {homeDetails.listedbyName}
+              </h3>
+              <p className="text-gray-700">{homeDetails.listedbyPhone}</p>
+              <p className="text-gray-700">{homeDetails.listedbyEmail}</p>
             </div>
           </div>
         </section>
@@ -250,4 +271,4 @@ const HomeListing = () => {
   );
 };
 
-export default HomeListing;
+export default Detail;
