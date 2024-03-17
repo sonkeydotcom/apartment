@@ -35,18 +35,15 @@ const ContactUs = () => {
             </div>
             <div>
               {/* Add your map component here */}
-              <div style={{ height: "300px", width: "100%" }}>
-                {/* Embed your map component here */}
-                {/* Example: <YourMapComponent /> */}
-                {/* If you're using Google Maps, you can embed it like this: */}
-                {/* <iframe
+              <div className="map-container h-96 w-full">
+                <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1114.7385541638013!2d-73.97758823907265!3d40.76371762366125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c258a97f73aeff%3A0x4a3e07b69b278b16!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1647396155327!5m2!1sen!2sus"
-                  width="600"
-                  height="450"
+                  width="100%"
+                  height="100%"
                   style={{ border: 0 }}
                   allowFullScreen=""
                   loading="lazy"
-                ></iframe> */}
+                ></iframe>
               </div>
             </div>
           </div>
