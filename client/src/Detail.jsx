@@ -37,7 +37,7 @@ const Detail = () => {
         const response = await axios.get(
           `https://apartment-1-a24r.onrender.com/api/rentals/q?id=${id}`
         );
-        console.log(response.data);
+
         setHomeDetails(response.data.listing);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -122,7 +122,7 @@ const Detail = () => {
 
                 <p className="flex items-center text-gray-700 mb-2">
                   <span className="font-bold"> Deposit: </span> $
-                  {homeDetails.deposit}
+                  {homeDetails.deposit}.00
                 </p>
 
                 <p className="flex items-center text-gray-700 mb-2">
@@ -132,7 +132,7 @@ const Detail = () => {
                 {homeDetails.fee && (
                   <p className="flex items-center text-gray-700 mb-2">
                     <span className="font-bold"> Application Fee: </span> $
-                    {homeDetails.fee}
+                    {homeDetails.fee}.00
                   </p>
                 )}
                 <p className="flex items-center text-gray-700 mb-2">
@@ -140,10 +140,20 @@ const Detail = () => {
                   {homeDetails.leaseLength}months min lease
                 </p>
 
-                <p className="flex items-center text-gray-700 mb-2">
-                  <FaMapMarkerAlt />
-                  {homeDetails.location}
-                </p>
+                <div>
+                  <p className="flex items-center text-gray-700 mb-2">
+                    <FaMapMarkerAlt />
+                    <a
+                      target="_blank"
+                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                        homeDetails.location
+                      )}`}
+                    >
+                      {homeDetails.location}
+                    </a>
+                  </p>
+                </div>
+
                 <p className="text-gray-700 mb-2">
                   <span className="font-bold">Utilities:</span>{" "}
                   {homeDetails.utilities}
@@ -176,8 +186,8 @@ const Detail = () => {
                       <span>Cats and Dogs allowed </span>
                     </p>
                     <p>
-                      A one-time, non-refundable pet fee of $300.00 for the
-                      first pet and $150.00 for the second pet
+                      A one-time, non-refundable pet fee of $150.00 for the
+                      first pet and $75.00 for the second pet
                     </p>
                   </>
                 )}
@@ -257,8 +267,16 @@ const Detail = () => {
               <h3 className="text-lg capitalize font-semibold">
                 {homeDetails.listedbyName}
               </h3>
-              <p className="text-gray-700">{homeDetails.listedbyPhone}</p>
-              <p className="text-gray-700">{homeDetails.listedbyEmail}</p>
+              <p className="text-gray-700">
+                <a href={`tel:${homeDetails.listedbyPhone}`}>
+                  {homeDetails.listedbyPhone}
+                </a>
+              </p>
+              <p className="text-gray-700 ">
+                <a href={`mailto:${homeDetails.listedbyEmail}`}>
+                  {homeDetails.listedbyEmail}
+                </a>
+              </p>
             </div>
           </div>
         </section>

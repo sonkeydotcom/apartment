@@ -69,7 +69,7 @@ const CreateListingPage = () => {
         "https://apartment-1-a24r.onrender.com/api/rentals",
         data // Send the FormData instance
       );
-      navigate(`/homelisting/${response.data.createdListing._id}`); //navigate(`/homelisting/${response.createdListing._id}`);
+      navigate(`/detail/${response.data.createdListing._id}`); //navigate(`/homelisting/${response.createdListing._id}`);
       setIsLoading(false);
 
       console.log(response.data);

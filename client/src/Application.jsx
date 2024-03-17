@@ -68,7 +68,7 @@ const Application = () => {
         const response = await axios.get(
           `https://apartment-1-a24r.onrender.com/api/rentals/q?id=${id}`
         );
-        console.log(response.data);
+
         setHomeDetails(response.data.listing);
       } catch (error) {
         console.error("Error fetching data:", error);

@@ -15,7 +15,7 @@ const Final = ({ formData, setFormData }) => {
         const response = await axios.get(
           `https://apartment-1-a24r.onrender.com/api/rentals/q?id=${id}`
         );
-        console.log(response.data);
+
         setHomeDetails(response.data.listing);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -42,7 +42,7 @@ const Final = ({ formData, setFormData }) => {
     <div className="container mx-auto">
       {/* Payment Selection */}
 
-      {homeDetails.fee == 0 ? null : (
+      {homeDetails.fee && (
         <div className="my-4">
           <label htmlFor="payment" className="text-xl font-semibold mb-2">
             Select Payment Method:

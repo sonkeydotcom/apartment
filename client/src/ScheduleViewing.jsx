@@ -14,11 +14,38 @@ const ScheduleViewing = () => {
     preferredTime: "",
   });
 
+  const getNextWeekdays = () => {
+    const weekdays = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const today = new Date();
+    const nextWeekdays = [];
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(today);
+      date.setDate(today.getDate() + i);
+      nextWeekdays.push({
+        weekday: weekdays[date.getDay()],
+        date: date.toISOString().split("T")[0], // Format date as YYYY-MM-DD
+      });
+    }
+    return nextWeekdays;
+  };
+
+  const [selectedDate, setSelectedDate] = useState("");
+  const weekdays = getNextWeekdays();
+
   const [modalOpen, setModalOpen] = useState(false);
   const [viewingDate, setViewingDate] = useState("");
   const [viewingTime, setViewingTime] = useState("");
   const [viewingAddress, setViewingAddress] = useState("");
   const [homeDetails, setHomeDetails] = useState({});
+  const [isLoading, setIsLoding] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +53,10 @@ const ScheduleViewing = () => {
       ...prevData,
       [name]: value,
     }));
+
+    if (name === "preferredDate") {
+      setSelectedDate(value);
+    }
   };
 
   useEffect(() => {
@@ -34,7 +65,7 @@ const ScheduleViewing = () => {
         const response = await axios.get(
           `https://apartment-1-a24r.onrender.com/api/rentals/q?id=${id}`
         );
-        console.log(response.data);
+
         setHomeDetails(response.data.listing);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -45,6 +76,7 @@ const ScheduleViewing = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoding(true);
     // Here you can handle form submission, e.g., send data to a server
     try {
       const response = await axios.post(
@@ -62,10 +94,12 @@ const ScheduleViewing = () => {
       setViewingTime(formData.preferredTime);
       successMessage();
       setModalOpen(true);
+      setIsLoding(false);
 
       // Redirect to a thank you page
     } catch (error) {
       console.error("Error submitting data:", error);
+      setIsLoding(false);
     }
   };
 
@@ -160,15 +194,23 @@ const ScheduleViewing = () => {
             >
               Preferred Date
             </label>
-            <input
+            <select
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="preferredDate"
-              required
-              type="date"
               name="preferredDate"
-              value={formData.preferredDate}
+              value={selectedDate}
               onChange={handleChange}
-            />
+              required
+            >
+              <option value="">
+                {selectedDate ? selectedDate : "Select a date..."}
+              </option>
+              {weekdays.map((day) => (
+                <option key={day.date} value={day.date}>
+                  {day.weekday} - {day.date}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="mb-4">
             <label
@@ -193,7 +235,7 @@ const ScheduleViewing = () => {
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
-              Schedule Viewing
+              {isLoading ? "Submitting..." : "Schedule Viewing"}
             </button>
           </div>
         </form>
